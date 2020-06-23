@@ -16,6 +16,7 @@ class RefsDemo extends Component {
     return (
       <div>
         <input type='text' ref={this.inputRef} />
+        <input type='text' />
         <button onClick={this.clickHandler}>Submit</button>
       </div>
     );
