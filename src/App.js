@@ -1,4 +1,4 @@
-import React, { useState, Fragment } from "react";
+import React, { Fragment } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Navbar from "./components/layout/Navbar";
 import Users from "./components/users/Users";
@@ -11,8 +11,6 @@ import AlertState from "./components/context/alert/AlertState";
 import "./App.css";
 
 const App = () => {
-  const [alert, setAlertState] = useState(null);
-
   return (
     <GithubState>
       <AlertState>
@@ -20,14 +18,14 @@ const App = () => {
           <div className='App'>
             <Navbar />
             <div className='container'>
-              <Alert alert={alert} />
+              <Alert />
               <Switch>
                 <Route
                   exact
                   path='/'
                   render={(props) => (
                     <Fragment>
-                      <Search setAlert={setAlert} />
+                      <Search />
                       <Users />
                     </Fragment>
                   )}

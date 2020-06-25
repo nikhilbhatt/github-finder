@@ -1,17 +1,18 @@
 //Converting class component to functional component using state hooks:-
 import React, { useState, useContext } from "react";
-import propTypes from "prop-types";
 import GithubContext from "../context/github/GithubContext";
-import Users from "./Users";
+import AlertContext from "../context/alert/alertContext";
 
-const Search = ({ setAlert }) => {
+const Search = () => {
   const githubContext = useContext(GithubContext);
+  const alertContext = useContext(AlertContext);
+
   const [text, setText] = useState("");
 
   const onSubmit = (e) => {
     e.preventDefault();
     if (text === "") {
-      setAlert("Enter Some value before searching", "light");
+      alertContext.setAlert("Enter Some value before searching", "light");
     } else {
       githubContext.search(text);
       setText("");
@@ -46,9 +47,4 @@ const Search = ({ setAlert }) => {
     </div>
   );
 };
-
-Search.propTypes = {
-  setAlert: propTypes.func.isRequired,
-};
-
 export default Search;
