@@ -17,6 +17,7 @@ const GithubState = (props) => {
     user: {},
     repos: [],
     loading: false,
+    notFound: false,
   };
 
   let githubclientid, githubclientsecret;
@@ -75,6 +76,8 @@ const GithubState = (props) => {
         user: state.user,
         repos: state.repos,
         loading: state.loading,
+        length: state.length,
+        notFound: state.notFound,
         search,
         clear,
         getProfile,

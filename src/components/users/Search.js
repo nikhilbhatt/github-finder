@@ -1,5 +1,5 @@
 //Converting class component to functional component using state hooks:-
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import GithubContext from "../context/github/GithubContext";
 import AlertContext from "../context/alert/alertContext";
 
@@ -9,15 +9,20 @@ const Search = () => {
 
   const [text, setText] = useState("");
 
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
     if (text === "") {
       alertContext.setAlert("Enter Some value before searching", "light");
     } else {
-      githubContext.search(text);
+      await githubContext.search(text);
       setText("");
     }
   };
+  useEffect(() => {
+    if (githubContext.users.length === 0 && githubContext.notFound === true) {
+      alertContext.setAlert("No user Found Try Again!!", "danger");
+    }
+  }, [githubContext.notFound, githubContext.users]);
   const onChange = (e) => setText(e.target.value);
 
   return (
